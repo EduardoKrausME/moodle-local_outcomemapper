@@ -30,6 +30,8 @@ use moodle_exception;
 /**
  * Tests for strict JSON response parsing.
  *
+ * @covers \local_outcomemapper\response_parser
+ *
  * @package   local_outcomemapper
  */
 final class response_parser_test extends advanced_testcase {
@@ -119,7 +121,8 @@ final class response_parser_test extends advanced_testcase {
     public function test_parse_accepts_json_fence_defensively(): void {
         $objectives = [['id' => 'custom:o1', 'title' => 'Objective one']];
         $targets = [['id' => 'cm:10', 'title' => 'Page', 'roles' => ['content']]];
-        $json = "```json\n" . json_encode([
+        $fence = str_repeat(chr(96), 3);
+        $json = $fence . "json\n" . json_encode([
                 'targets' => [[
                     'target_id' => 'cm:10',
                     'relations' => [],
@@ -131,7 +134,7 @@ final class response_parser_test extends advanced_testcase {
                         'explanation' => 'No relationship.',
                     ],
                 ]],
-            ], JSON_THROW_ON_ERROR) . "\n```";
+            ], JSON_THROW_ON_ERROR) . "\n" . $fence;
 
         $rows = (new response_parser())->parse($json, $objectives, $targets);
         $this->assertCount(1, $rows);
