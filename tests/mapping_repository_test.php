@@ -29,6 +29,8 @@ use advanced_testcase;
 /**
  * Tests for suggestion review and confirmed mappings.
  *
+ * @covers \local_outcomemapper\mapping_repository
+ *
  * @package   local_outcomemapper
  */
 final class mapping_repository_test extends advanced_testcase {
