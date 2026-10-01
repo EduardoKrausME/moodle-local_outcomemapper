@@ -101,7 +101,7 @@
                                     <ul class="list-unstyled mb-0">
                                         {{#content.items}}
                                             <li class="mb-2">
-                                                {{#hasurl}}<a href="{{url}}">{{title}}</a>{{/hasurl}}
+                                                {{#hasurl}}<a href="{{{url}}}">{{title}}</a>{{/hasurl}}
                                                 {{^hasurl}}{{title}}{{/hasurl}}
                                                 <div class="small">{{relation}} · {{confidence}}%</div>
                                                 <details class="small">
@@ -120,7 +120,7 @@
                                     <ul class="list-unstyled mb-0">
                                         {{#activities.items}}
                                             <li class="mb-2">
-                                                {{#hasurl}}<a href="{{url}}">{{title}}</a>{{/hasurl}}
+                                                {{#hasurl}}<a href="{{{url}}}">{{title}}</a>{{/hasurl}}
                                                 {{^hasurl}}{{title}}{{/hasurl}}
                                                 <div class="small">{{relation}} · {{confidence}}%</div>
                                                 <details class="small">
@@ -139,7 +139,7 @@
                                     <ul class="list-unstyled mb-0">
                                         {{#assessments.items}}
                                             <li class="mb-2">
-                                                {{#hasurl}}<a href="{{url}}">{{title}}</a>{{/hasurl}}
+                                                {{#hasurl}}<a href="{{{url}}}">{{title}}</a>{{/hasurl}}
                                                 {{^hasurl}}{{title}}{{/hasurl}}
                                                 <div class="small">{{relation}} · {{confidence}}%</div>
                                                 <details class="small">
@@ -158,7 +158,7 @@
                                     <ul class="list-unstyled mb-0">
                                         {{#questions.items}}
                                             <li class="mb-2">
-                                                {{#hasurl}}<a href="{{url}}">{{title}}</a>{{/hasurl}}
+                                                {{#hasurl}}<a href="{{{url}}}">{{title}}</a>{{/hasurl}}
                                                 {{^hasurl}}{{title}}{{/hasurl}}
                                                 <div class="small">{{relation}} · {{confidence}}%</div>
                                                 <details class="small">
