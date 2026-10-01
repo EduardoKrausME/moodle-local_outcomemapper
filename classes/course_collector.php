@@ -364,7 +364,7 @@ class course_collector {
         int $quizid,
         context_module $context,
         string $quizname,
-        array          &$warnings
+        array &$warnings
     ): array {
         if (!has_any_capability(['mod/quiz:preview', 'mod/quiz:manage'], $context)) {
             $warnings[] = get_string('warning_quizquestionsnopermission', 'local_outcomemapper', $quizname);
