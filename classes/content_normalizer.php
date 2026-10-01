@@ -50,8 +50,7 @@ class content_normalizer {
         $value = str_replace(['<br>', '<br/>', '<br />', '</p>', '</div>', '</li>'], "\n", $value);
         $value = strip_tags($value);
         $value = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-        $value = preg_replace('/[\x{00A0}\t ]+/u', ' ', $value) ?? $value;
-        $value = preg_replace('/\R{3,}/u', "\n\n", $value) ?? $value;
+        $value = preg_replace('/[\x{00A0}\s]+/u', ' ', $value) ?? $value;
         $value = trim($value);
 
         if ($limit !== null && $limit > 0 && core_text::strlen($value) > $limit) {
