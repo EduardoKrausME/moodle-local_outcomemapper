@@ -29,7 +29,7 @@ The route/model/credit configuration belongs to `local_ai_bridge`, not to this p
 
 The plugin sends a constrained JSON dataset containing local objective and target IDs plus only the normalized text
 necessary to compare them. It asks the model for JSON only and validates the complete result before anything is stored.
-A response is rejected when it contains unknown IDs, duplicate IDs, unsupported relation values or an incomplete
+A response is rejected when it contains unknown IDs, duplicate IDs, invalid relation values or an incomplete
 objective/target matrix.
 
 The expected response shape is:
