@@ -30,6 +30,8 @@ use core_competency\api;
 /**
  * Tests for deterministic Moodle data collection.
  *
+ * @covers \local_outcomemapper\course_collector
+ *
  * @package   local_outcomemapper
  */
 final class course_collector_test extends advanced_testcase {
@@ -113,6 +115,8 @@ final class course_collector_test extends advanced_testcase {
      * Missing textual content is retained as a target and surfaced as a warning.
      */
     public function test_missing_content_is_reported(): void {
+        global $DB;
+
         $this->resetAfterTest(true);
         $this->setAdminUser();
         $course = $this->getDataGenerator()->create_course();
@@ -122,6 +126,7 @@ final class course_collector_test extends advanced_testcase {
             'intro' => '',
             'externalurl' => 'https://example.invalid/reference',
         ]);
+        $DB->set_field('url', 'intro', '', ['id' => $url->id]);
 
         $collector = new course_collector($course->id, 3000);
         $catalog = $collector->collect([], [$url->cmid], false, false, false, 'Reference objective');
