@@ -29,6 +29,8 @@ use advanced_testcase;
 /**
  * Tests deterministic coverage findings.
  *
+ * @covers \local_outcomemapper\coverage_calculator
+ *
  * @package   local_outcomemapper
  */
 final class coverage_calculator_test extends advanced_testcase {
