@@ -1,0 +1,275 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_outcomemapper/dashboard
+
+    Example context (json):
+    {
+        Aqui tem que criar o context em inglês
+    }
+}}
+<div class="local-outcomemapper mt-4">
+    <div class="alert alert-info" role="note">
+        {{#str}} aicaveat, local_outcomemapper {{/str}}
+    </div>
+
+    {{#hasanalysis}}
+        <section aria-labelledby="outcomemapper-analysis-heading" class="mb-4">
+            <h3 id="outcomemapper-analysis-heading">{{#str}} latestanalysis, local_outcomemapper {{/str}}</h3>
+            <dl class="row">
+                <dt class="col-sm-3">{{#str}} analysisid, local_outcomemapper {{/str}}</dt>
+                <dd class="col-sm-9">{{analysis.id}}</dd>
+                <dt class="col-sm-3">{{#str}} analysisdate, local_outcomemapper {{/str}}</dt>
+                <dd class="col-sm-9">{{analysis.date}}</dd>
+                <dt class="col-sm-3">{{#str}} analysisby, local_outcomemapper {{/str}}</dt>
+                <dd class="col-sm-9">{{analysis.user}}</dd>
+                <dt class="col-sm-3">{{#str}} objectives, local_outcomemapper {{/str}}</dt>
+                <dd class="col-sm-9">{{analysis.objectivecount}}</dd>
+                <dt class="col-sm-3">{{#str}} targets, local_outcomemapper {{/str}}</dt>
+                <dd class="col-sm-9">{{analysis.targetcount}}</dd>
+                <dt class="col-sm-3">{{#str}} batches, local_outcomemapper {{/str}}</dt>
+                <dd class="col-sm-9">{{analysis.batches}}</dd>
+            </dl>
+
+            {{#analysis.haswarnings}}
+                <h4>{{#str}} warnings, local_outcomemapper {{/str}}</h4>
+                <ul>
+                    {{#analysis.warnings}}
+                        <li>{{text}}</li>
+                    {{/analysis.warnings}}
+                </ul>
+            {{/analysis.haswarnings}}
+        </section>
+
+        <section aria-labelledby="outcomemapper-findings-heading" class="mb-4">
+            <h3 id="outcomemapper-findings-heading">{{#str}} findings, local_outcomemapper {{/str}}</h3>
+            <p class="text-muted">{{#str}} heuristicnote, local_outcomemapper {{/str}}</p>
+            <div class="row">
+                {{#findings}}
+                    <div class="col-md-6 mb-3">
+                        <h4 class="h5">{{title}}</h4>
+                        {{#hasitems}}
+                            <ul>
+                                {{#items}}
+                                    <li>{{text}}</li>{{/items}}
+                            </ul>
+                        {{/hasitems}}
+                        {{^hasitems}}<p class="text-muted">—</p>{{/hasitems}}
+                    </div>
+                {{/findings}}
+            </div>
+        </section>
+
+        <section aria-labelledby="outcomemapper-matrix-heading" class="mb-4">
+            <h3 id="outcomemapper-matrix-heading">{{#str}} matrix, local_outcomemapper {{/str}}</h3>
+            <div class="table-responsive">
+                <table class="generaltable">
+                    <thead>
+                    <tr>
+                        <th scope="col">{{#str}} objective, local_outcomemapper {{/str}}</th>
+                        <th scope="col">{{#str}} content, local_outcomemapper {{/str}}</th>
+                        <th scope="col">{{#str}} activities, local_outcomemapper {{/str}}</th>
+                        <th scope="col">{{#str}} assessments, local_outcomemapper {{/str}}</th>
+                        <th scope="col">{{#str}} questions, local_outcomemapper {{/str}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#matrix}}
+                        <tr>
+                            <th scope="row">
+                                <strong>{{title}}</strong>
+                                <div class="small text-muted">{{source}}</div>
+                                {{#description}}
+                                    <div class="small mt-1">{{description}}</div>{{/description}}
+                            </th>
+                            <td>
+                                {{#content.hasitems}}
+                                    <ul class="list-unstyled mb-0">
+                                        {{#content.items}}
+                                            <li class="mb-2">
+                                                {{#hasurl}}<a href="{{url}}">{{title}}</a>{{/hasurl}}
+                                                {{^hasurl}}{{title}}{{/hasurl}}
+                                                <div class="small">{{relation}} · {{confidence}}%</div>
+                                                <details class="small">
+                                                    <summary>{{#str}} evidence, local_outcomemapper {{/str}}</summary>
+                                                    <div>{{evidence}}</div>
+                                                    <div>{{explanation}}</div>
+                                                </details>
+                                            </li>
+                                        {{/content.items}}
+                                    </ul>
+                                {{/content.hasitems}}
+                                {{^content.hasitems}}<span class="text-muted">—</span>{{/content.hasitems}}
+                            </td>
+                            <td>
+                                {{#activities.hasitems}}
+                                    <ul class="list-unstyled mb-0">
+                                        {{#activities.items}}
+                                            <li class="mb-2">
+                                                {{#hasurl}}<a href="{{url}}">{{title}}</a>{{/hasurl}}
+                                                {{^hasurl}}{{title}}{{/hasurl}}
+                                                <div class="small">{{relation}} · {{confidence}}%</div>
+                                                <details class="small">
+                                                    <summary>{{#str}} evidence, local_outcomemapper {{/str}}</summary>
+                                                    <div>{{evidence}}</div>
+                                                    <div>{{explanation}}</div>
+                                                </details>
+                                            </li>
+                                        {{/activities.items}}
+                                    </ul>
+                                {{/activities.hasitems}}
+                                {{^activities.hasitems}}<span class="text-muted">—</span>{{/activities.hasitems}}
+                            </td>
+                            <td>
+                                {{#assessments.hasitems}}
+                                    <ul class="list-unstyled mb-0">
+                                        {{#assessments.items}}
+                                            <li class="mb-2">
+                                                {{#hasurl}}<a href="{{url}}">{{title}}</a>{{/hasurl}}
+                                                {{^hasurl}}{{title}}{{/hasurl}}
+                                                <div class="small">{{relation}} · {{confidence}}%</div>
+                                                <details class="small">
+                                                    <summary>{{#str}} evidence, local_outcomemapper {{/str}}</summary>
+                                                    <div>{{evidence}}</div>
+                                                    <div>{{explanation}}</div>
+                                                </details>
+                                            </li>
+                                        {{/assessments.items}}
+                                    </ul>
+                                {{/assessments.hasitems}}
+                                {{^assessments.hasitems}}<span class="text-muted">—</span>{{/assessments.hasitems}}
+                            </td>
+                            <td>
+                                {{#questions.hasitems}}
+                                    <ul class="list-unstyled mb-0">
+                                        {{#questions.items}}
+                                            <li class="mb-2">
+                                                {{#hasurl}}<a href="{{url}}">{{title}}</a>{{/hasurl}}
+                                                {{^hasurl}}{{title}}{{/hasurl}}
+                                                <div class="small">{{relation}} · {{confidence}}%</div>
+                                                <details class="small">
+                                                    <summary>{{#str}} evidence, local_outcomemapper {{/str}}</summary>
+                                                    <div>{{evidence}}</div>
+                                                    <div>{{explanation}}</div>
+                                                </details>
+                                            </li>
+                                        {{/questions.items}}
+                                    </ul>
+                                {{/questions.hasitems}}
+                                {{^questions.hasitems}}<span class="text-muted">—</span>{{/questions.hasitems}}
+                            </td>
+                        </tr>
+                    {{/matrix}}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section aria-labelledby="outcomemapper-review-heading" class="mb-4">
+            <h3 id="outcomemapper-review-heading">{{#str}} reviewmapping, local_outcomemapper {{/str}}</h3>
+            {{#hassuggestions}}
+                <div class="table-responsive">
+                    <table class="generaltable">
+                        <thead>
+                        <tr>
+                            <th scope="col">{{#str}} objective, local_outcomemapper {{/str}}</th>
+                            <th scope="col">{{#str}} targets, local_outcomemapper {{/str}}</th>
+                            <th scope="col">{{#str}} status, local_outcomemapper {{/str}}</th>
+                            <th scope="col">{{#str}} evidence, local_outcomemapper {{/str}}</th>
+                            <th scope="col">{{#str}} reviewmapping, local_outcomemapper {{/str}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#suggestions}}
+                            <tr>
+                                <td>{{objective}}</td>
+                                <td>{{target}}</td>
+                                <td>
+                                    <strong>{{relation}}</strong> · {{confidence}}%<br>
+                                    <span class="small text-muted">{{status}}</span>
+                                </td>
+                                <td>
+                                    <div>{{evidence}}</div>
+                                    <div class="small text-muted">{{explanation}}</div>
+                                </td>
+                                <td>
+                                    {{#canreview}}
+                                        <div class="d-flex flex-wrap gap-1">
+                                            <form method="post" action="{{actionurl}}" class="mb-1">
+                                                <input type="hidden" name="courseid" value="{{courseid}}">
+                                                <input type="hidden" name="analysisid" value="{{analysis.id}}">
+                                                <input type="hidden" name="suggestionid" value="{{id}}">
+                                                <input type="hidden" name="action" value="confirm">
+                                                <input type="hidden" name="sesskey" value="{{sesskey}}">
+                                                <button type="submit" class="btn btn-sm btn-primary">{{#str}}
+                                                    confirm, local_outcomemapper {{/str}}</button>
+                                            </form>
+                                            <form method="post" action="{{actionurl}}" class="mb-1">
+                                                <input type="hidden" name="courseid" value="{{courseid}}">
+                                                <input type="hidden" name="analysisid" value="{{analysis.id}}">
+                                                <input type="hidden" name="suggestionid" value="{{id}}">
+                                                <input type="hidden" name="action" value="reject">
+                                                <input type="hidden" name="sesskey" value="{{sesskey}}">
+                                                <button type="submit" class="btn btn-sm btn-secondary">{{#str}}
+                                                    reject, local_outcomemapper {{/str}}</button>
+                                            </form>
+                                        </div>
+                                    {{/canreview}}
+                                    {{^canreview}}<span class="text-muted">{{status}}</span>{{/canreview}}
+                                </td>
+                            </tr>
+                        {{/suggestions}}
+                        </tbody>
+                    </table>
+                </div>
+            {{/hassuggestions}}
+            {{^hassuggestions}}<p>{{#str}} nosuggestions, local_outcomemapper {{/str}}</p>{{/hassuggestions}}
+        </section>
+    {{/hasanalysis}}
+
+    <section aria-labelledby="outcomemapper-confirmed-heading" class="mb-4">
+        <h3 id="outcomemapper-confirmed-heading">{{#str}} confirmedmappings, local_outcomemapper {{/str}}</h3>
+        {{#hasconfirmed}}
+            <div class="table-responsive">
+                <table class="generaltable">
+                    <thead>
+                    <tr>
+                        <th scope="col">{{#str}} objective, local_outcomemapper {{/str}}</th>
+                        <th scope="col">{{#str}} targets, local_outcomemapper {{/str}}</th>
+                        <th scope="col">{{#str}} status, local_outcomemapper {{/str}}</th>
+                        <th scope="col">{{#str}} evidence, local_outcomemapper {{/str}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#confirmed}}
+                        <tr>
+                            <td>{{objective}}</td>
+                            <td>{{target}}</td>
+                            <td>{{relation}} · {{confidence}}%</td>
+                            <td>
+                                <div>{{evidence}}</div>
+                                <div class="small text-muted">{{explanation}}</div>
+                            </td>
+                        </tr>
+                    {{/confirmed}}
+                    </tbody>
+                </table>
+            </div>
+        {{/hasconfirmed}}
+        {{^hasconfirmed}}<p>{{#str}} noconfirmedmappings, local_outcomemapper {{/str}}</p>{{/hasconfirmed}}
+    </section>
+</div>
