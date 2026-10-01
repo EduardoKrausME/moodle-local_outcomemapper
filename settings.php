@@ -24,14 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-/**
- * Settings for local_outcomemapper.
- *
- * @package   local_outcomemapper
- * @copyright 2026 Eduardo Kraus
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
+// Register plugin settings for site administrators.
 if ($hassiteconfig) {
     $settings = new admin_settingpage('local_outcomemapper', get_string('pluginname', 'local_outcomemapper'));
 
