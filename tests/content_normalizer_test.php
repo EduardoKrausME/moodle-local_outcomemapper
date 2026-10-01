@@ -30,6 +30,8 @@ use core_text;
 /**
  * Tests for content normalization.
  *
+ * @covers \local_outcomemapper\content_normalizer
+ *
  * @package   local_outcomemapper
  */
 final class content_normalizer_test extends advanced_testcase {
