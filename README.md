@@ -1,6 +1,6 @@
 # Moodle local_outcomemapper
 
-`local_outcomemapper` is a course-level mapping and review tool for Moodle 4.5+. It compares learning objectives with
+`local_outcomemapper` is a course-level mapping and review tool for Moodle. It compares learning objectives with
 the course evidence that may teach or assess them, while keeping the authoritative Moodle data and the AI interpretation
 clearly separated.
 
@@ -18,27 +18,6 @@ It produces an objective-by-evidence matrix with the relations `strong`, `probab
 evidence and explanation. These values are AI suggestions, not facts. A teacher can confirm or reject positive
 suggestions, and confirmed mappings are stored separately from the AI suggestions. The plugin never changes Moodle
 competencies or grade outcomes automatically.
-
-## Requirements
-
-- Moodle 4.5 or newer.
-- PHP version supported by the installed Moodle release.
-- `local_ai_bridge` version `2026093001` or newer:
-  https://github.com/EduardoKrausME/moodle-local_ai_bridge/
-
-The dependency is declared in `version.php`:
-
-```php
-$plugin->dependencies = [
-    'local_ai_bridge' => 2026093001,
-];
-```
-
-No provider, API key, endpoint or model is configured by this plugin. All AI traffic goes exclusively through:
-
-```php
-\local_ai_bridge\api::generate('outcomemapper-map', $messages);
-```
 
 ## AI Bridge purpose
 
@@ -89,7 +68,7 @@ by deterministic PHP validation. Every objective must still be classified exactl
 The Moodle side is authoritative. PHP collects the actual course structure and identifies each object before AI is
 involved. AI does not discover course modules, competencies, outcomes or quiz questions by itself.
 
-The first version collects module definitions and teacher-authored course content only. It deliberately does not collect
+the plugin collects module definitions and teacher-authored course content only. It deliberately does not collect
 student names, submissions, forum posts, quiz attempts, grades or individual performance. Quiz questions are included
 only when requested and when the current user has an appropriate quiz capability.
 
@@ -142,7 +121,7 @@ quiz-question extraction performs an additional module-context capability check.
 
 ## Privacy
 
-No student identity or individual performance is required by version 1.
+No student identity or individual performance is required by the plugin.
 
 The plugin stores user IDs only for accountability of teacher/admin actions:
 
@@ -156,15 +135,6 @@ user's data anonymizes those accountability references while retaining shared co
 AI Bridge has its own privacy behavior and usage accounting. This plugin does not persist the raw AI response after
 validation.
 
-## Installation
-
-Install `local_ai_bridge` first, then place this plugin in:
-
-`local/outcomemapper`
-
-Run the normal Moodle upgrade process and configure the `outcomemapper-map` purpose/routes in AI Bridge. There are no
-API-key or provider settings under Outcome Mapper.
-
 ## Configuration
 
 Site administration exposes only data-volume controls:
@@ -175,24 +145,3 @@ Site administration exposes only data-volume controls:
 
 The batching controls keep requests bounded for large courses. Every batch must still return a complete matrix for the
 objects included in that batch.
-
-## Tests
-
-The PHPUnit suite covers:
-
-- content normalization and bounds;
-- strict JSON parsing and complete-matrix validation;
-- course-module collection;
-- Moodle competency collection;
-- quiz-question collection;
-- absent content warnings;
-- default capability behavior and module-specific view denial;
-- suggestion confirmation;
-- suggestion rejection and separation from confirmed mappings.
-
-The included GitHub Actions workflow installs `local_ai_bridge` as a test dependency, runs PHP lint, Moodle validation,
-PHPUnit and `EduardoKrausME/moodle-plugin-validate`.
-
-## License
-
-GNU GPL v3 or later.
