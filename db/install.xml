@@ -12,7 +12,7 @@
                 <FIELD NAME="objectivecount" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
                 <FIELD NAME="targetcount" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
                 <FIELD NAME="batches" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
-                <FIELD NAME="inputhash" TYPE="char" LENGTH="64" NOTNULL="true" DEFAULT=""/>
+                <FIELD NAME="inputhash" TYPE="char" LENGTH="64" NOTNULL="true"/>
                 <FIELD NAME="objectivesjson" TYPE="text" NOTNULL="false"/>
                 <FIELD NAME="targetsjson" TYPE="text" NOTNULL="false"/>
                 <FIELD NAME="warningsjson" TYPE="text" NOTNULL="false"/>
@@ -34,11 +34,11 @@
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="analysisid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
                 <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
-                <FIELD NAME="objectivekey" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT=""/>
-                <FIELD NAME="objectivetitle" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT=""/>
-                <FIELD NAME="targetkey" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT=""/>
-                <FIELD NAME="targettitle" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT=""/>
-                <FIELD NAME="targetroles" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT=""/>
+                <FIELD NAME="objectivekey" TYPE="char" LENGTH="100" NOTNULL="true"/>
+                <FIELD NAME="objectivetitle" TYPE="char" LENGTH="255" NOTNULL="true"/>
+                <FIELD NAME="targetkey" TYPE="char" LENGTH="100" NOTNULL="true"/>
+                <FIELD NAME="targettitle" TYPE="char" LENGTH="255" NOTNULL="true"/>
+                <FIELD NAME="targetroles" TYPE="char" LENGTH="100" NOTNULL="true"/>
                 <FIELD NAME="relation" TYPE="char" LENGTH="12" NOTNULL="true" DEFAULT="none"/>
                 <FIELD NAME="confidence" TYPE="int" LENGTH="3" NOTNULL="true" DEFAULT="0"/>
                 <FIELD NAME="evidence" TYPE="text" NOTNULL="false"/>
@@ -64,11 +64,11 @@
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
-                <FIELD NAME="objectivekey" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT=""/>
-                <FIELD NAME="objectivetitle" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT=""/>
-                <FIELD NAME="targetkey" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT=""/>
-                <FIELD NAME="targettitle" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT=""/>
-                <FIELD NAME="targetroles" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT=""/>
+                <FIELD NAME="objectivekey" TYPE="char" LENGTH="100" NOTNULL="true"/>
+                <FIELD NAME="objectivetitle" TYPE="char" LENGTH="255" NOTNULL="true"/>
+                <FIELD NAME="targetkey" TYPE="char" LENGTH="100" NOTNULL="true"/>
+                <FIELD NAME="targettitle" TYPE="char" LENGTH="255" NOTNULL="true"/>
+                <FIELD NAME="targetroles" TYPE="char" LENGTH="100" NOTNULL="true"/>
                 <FIELD NAME="relation" TYPE="char" LENGTH="12" NOTNULL="true" DEFAULT="none"/>
                 <FIELD NAME="confidence" TYPE="int" LENGTH="3" NOTNULL="true" DEFAULT="0"/>
                 <FIELD NAME="evidence" TYPE="text" NOTNULL="false"/>
