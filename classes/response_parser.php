@@ -165,7 +165,7 @@ class response_parser {
         array $data,
         array $objectivebyid,
         array $targetbyid,
-        array  &$seenobjectives
+        array &$seenobjectives
     ): array {
         if (!isset($objectivebyid[$objectiveid])) {
             throw new moodle_exception('error_unknownobjective', 'local_outcomemapper', '', $objectiveid);
