@@ -46,7 +46,7 @@ class dashboard_builder {
      * @param coverage_calculator|null $calculator Calculator.
      */
     public function __construct(
-        ?mapping_repository  $repository = null,
+        ?mapping_repository $repository = null,
         ?coverage_calculator $calculator = null
     ) {
         $this->repository = $repository ?? new mapping_repository();

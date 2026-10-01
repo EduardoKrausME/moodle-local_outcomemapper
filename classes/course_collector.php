@@ -73,11 +73,11 @@ class course_collector {
      * @return array
      */
     public function collect(
-        array  $sectionids,
-        array  $cmids,
-        bool   $includecompetencies,
-        bool   $includeoutcomes,
-        bool   $includequestions,
+        array $sectionids,
+        array $cmids,
+        bool $includecompetencies,
+        bool $includeoutcomes,
+        bool $includequestions,
         string $additionalobjectives
     ): array {
         $warnings = [];
@@ -360,10 +360,10 @@ class course_collector {
      * @return array
      */
     private function collect_quiz_questions(
-        int            $cmid,
-        int            $quizid,
+        int $cmid,
+        int $quizid,
         context_module $context,
-        string         $quizname,
+        string $quizname,
         array          &$warnings
     ): array {
         if (!has_any_capability(['mod/quiz:preview', 'mod/quiz:manage'], $context)) {

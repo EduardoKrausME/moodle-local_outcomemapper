@@ -162,9 +162,9 @@ class response_parser {
         string $objectiveid,
         string $targetid,
         string $strength,
-        array  $data,
-        array  $objectivebyid,
-        array  $targetbyid,
+        array $data,
+        array $objectivebyid,
+        array $targetbyid,
         array  &$seenobjectives
     ): array {
         if (!isset($objectivebyid[$objectiveid])) {
