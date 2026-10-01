@@ -30,6 +30,8 @@ use context_course;
 /**
  * Tests for course-level access control.
  *
+ * @coversNothing
+ *
  * @package   local_outcomemapper
  */
 final class capability_test extends advanced_testcase {
