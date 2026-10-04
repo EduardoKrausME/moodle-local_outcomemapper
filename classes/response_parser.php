@@ -23,6 +23,7 @@
  */
 
 // phpcs:disable moodle.Strings.ForbiddenStrings.Found
+// phpcs:disable moodle.Files.LineLength.TooLong
 
 namespace local_outcomemapper;
 
