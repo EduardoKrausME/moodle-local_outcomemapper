@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// phpcs:disable moodle.Strings.ForbiddenStrings.Found
+
 namespace local_outcomemapper;
 
 use JsonException;
@@ -44,7 +46,7 @@ class response_parser {
      * @param array $targets Targets sent in this batch.
      * @return array Flattened relation rows.
      */
-    public function parse(string $raw, array $objectives, array $targets): array { // phpcs:disable moodle.Strings.ForbiddenStrings.Found
+    public function parse(string $raw, array $objectives, array $targets): array {
         $json = trim($raw);
         if (preg_match('/^```(?:json)?\s*(.*?)\s*```$/is', $json, $matches)) {
             $json = trim($matches[1]);
