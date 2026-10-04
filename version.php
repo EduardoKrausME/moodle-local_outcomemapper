@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2026093000;
-$plugin->release = '0.1.0';
+$plugin->version = 2026100300;
+$plugin->release = '1.1.0';
 $plugin->component = 'local_outcomemapper';
 $plugin->requires = 2024100700;
 $plugin->maturity = MATURITY_STABLE;
