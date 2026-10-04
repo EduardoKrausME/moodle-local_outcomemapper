@@ -24,14 +24,6 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-/**
- * Capabilities for local_outcomemapper.
- *
- * @package   local_outcomemapper
- * @copyright 2026 Eduardo Kraus
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 $capabilities = [
     'local/outcomemapper:analyse' => [
         'riskbitmask' => RISK_PERSONAL,
