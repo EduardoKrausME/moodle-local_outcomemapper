@@ -143,5 +143,32 @@ Site administration exposes only data-volume controls:
 - number of targets per AI batch;
 - number of objectives per AI batch.
 
-The batching controls keep requests bounded for large courses. Every batch must still return a complete matrix for the
-objects included in that batch.
+The batch sizes control the maximum objects in a single AI request. Separately, the **Maximum AI requests per analysis**
+setting defaults to 8 and has a hard server-side cap of 12. The plugin computes the cross-product of objective and target
+batches after collecting the selection and **rejects** an oversized request before persisting the analysis or spending AI
+credits. Reduce the selected sections, activities, quiz questions, or objectives if the displayed limit is exceeded.
+
+## Backup, restore and deletion
+
+Course backups include only teacher-confirmed mappings, not AI-generated suggestions or analysis runs. Confirmed mappings
+are restored after Moodle has mapped course modules and sections to their new identifiers. Competencies, grade outcomes,
+questions and quizzes are restored only if Moodle supplies valid destination ID mappings. Unresolved references are **skipped**
+rather than accidentally pointed at an unrelated object, which can occur when restoring a partial course or importing into
+another site. Existing confirmed mappings are kept when importing into a course that already has the same pair; the original
+analysis ID is always reset to zero. Teacher IDs are included in backup data only when user data was requested and are
+resolved through Moodle's user mappings on restore.
+
+Deleting a course removes its analysis catalogs, AI suggestions and confirmed mappings before Moodle deletes the course
+context, so privacy data does not become orphaned.
+
+## Installable ZIP
+
+GitHub's automatic **Source code (zip)** download has a repository-specific root folder and is not suitable for uploading
+directly in Site administration > Plugins > Install plugins. Use the archive produced by the
+[Build installable Moodle ZIP workflow](https://github.com/EduardoKrausME/moodle-local_outcomemapper/actions/workflows/package.yml),
+which verifies that all entries start with `outcomemapper/` and publishes `local_outcomemapper.zip` as a CI artifact. This
+build **does not** increment the plugin version or publish a release.
+
+When updating the Moodle Marketplace listing, ensure the uploaded archive also uses the `outcomemapper/` root, and set its
+issue tracker field to
+https://github.com/EduardoKrausME/moodle-local_outcomemapper/issues. Those Marketplace settings are managed outside GitHub.
