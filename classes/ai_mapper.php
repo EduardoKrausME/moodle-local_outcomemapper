@@ -49,6 +49,31 @@ class ai_mapper {
         $this->parser = $parser ?? new response_parser();
     }
 
+    /** Maximum requests to perform synchronously, even when the setting is raised. */
+    private const HARD_MAX_BATCHES = 12;
+
+    /**
+     * Reject workloads that would exhaust the request budget before spending AI tokens.
+     *
+     * @param array $objectives Selected objectives.
+     * @param array $targets Selected course objects.
+     * @return int Required number of calls.
+     */
+    public function validate_workload(array $objectives, array $targets): int {
+        $targetbatchsize = max(1, min(20, (int)get_config('local_outcomemapper', 'targetbatchsize') ?: 8));
+        $objectivebatchsize = max(5, min(80, (int)get_config('local_outcomemapper', 'objectivebatchsize') ?: 50));
+        $maxbatches = max(1, min(self::HARD_MAX_BATCHES, (int)get_config('local_outcomemapper', 'maxbatches') ?: 8));
+        $required = (int)ceil(count($objectives) / $objectivebatchsize) *
+            (int)ceil(count($targets) / $targetbatchsize);
+        if ($required > $maxbatches) {
+            throw new moodle_exception('analysislimitexceeded', 'local_outcomemapper', '', (object)[
+                'required' => $required,
+                'maximum' => $maxbatches,
+            ]);
+        }
+        return $required;
+    }
+
     /**
      * Map all selected targets against all selected objectives.
      *
@@ -59,6 +84,8 @@ class ai_mapper {
     public function map(array $objectives, array $targets): array {
         $targetbatchsize = max(1, min(20, (int)get_config('local_outcomemapper', 'targetbatchsize') ?: 8));
         $objectivebatchsize = max(5, min(80, (int)get_config('local_outcomemapper', 'objectivebatchsize') ?: 50));
+
+        $this->validate_workload($objectives, $targets);
 
         $rows = [];
         $batches = 0;
