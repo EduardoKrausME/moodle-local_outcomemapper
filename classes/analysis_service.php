@@ -81,6 +81,9 @@ class analysis_service {
             throw new moodle_exception('notargets', 'local_outcomemapper');
         }
 
+        // Reject oversized selections before creating any analysis row or invoking AI Bridge.
+        $this->mapper->validate_workload($catalog['objectives'], $catalog['targets']);
+
         $analysisid = $this->repository->create_analysis($courseid, (int)$USER->id, $catalog);
 
         try {
