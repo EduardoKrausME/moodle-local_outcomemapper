@@ -52,5 +52,13 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    $settings->add(new admin_setting_configtext(
+        'local_outcomemapper/maxbatches',
+        get_string('maxbatches', 'local_outcomemapper'),
+        get_string('maxbatches_desc', 'local_outcomemapper'),
+        8,
+        PARAM_INT
+    ));
+
     $ADMIN->add('localplugins', $settings);
 }
