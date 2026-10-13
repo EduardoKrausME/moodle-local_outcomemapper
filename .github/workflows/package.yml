@@ -14,6 +14,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+      - name: Validate PHP syntax
+        run: |
+          find . -path './.git' -prune -o -name '*.php' -type f -print0 | xargs -0 -n 1 php -l
       - name: Package using the required plugin root directory
         run: |
           git archive --format=zip --prefix=outcomemapper/ HEAD -o local_outcomemapper.zip
