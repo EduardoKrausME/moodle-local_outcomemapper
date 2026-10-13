@@ -1,0 +1,30 @@
+name: Build installable Moodle ZIP
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Package using the required plugin root directory
+        run: |
+          git archive --format=zip --prefix=outcomemapper/ HEAD -o local_outcomemapper.zip
+          unzip -Z1 local_outcomemapper.zip | awk '
+            $0 !~ /^outcomemapper\// { invalid = 1; print "Unexpected path: " $0 }
+            END { exit invalid }
+          '
+          unzip -Z1 local_outcomemapper.zip | grep -qx 'outcomemapper/version.php'
+      - name: Upload installable ZIP (no release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: local_outcomemapper-installable
+          path: local_outcomemapper.zip
+          if-no-files-found: error
