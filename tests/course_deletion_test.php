@@ -27,6 +27,8 @@ namespace local_outcomemapper;
 use advanced_testcase;
 
 /**
+ * Class course_deletion_test
+ *
  * @covers \local_outcomemapper\hook_callbacks
  */
 final class course_deletion_test extends advanced_testcase {

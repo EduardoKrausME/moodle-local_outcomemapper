@@ -27,6 +27,8 @@ namespace local_outcomemapper;
 use advanced_testcase;
 
 /**
+ * Class restore_key_mapper_test
+ *
  * @covers \local_outcomemapper\restore_key_mapper
  */
 final class restore_key_mapper_test extends advanced_testcase {

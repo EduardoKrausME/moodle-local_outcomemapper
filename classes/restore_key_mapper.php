@@ -46,8 +46,10 @@ final class restore_key_mapper {
     }
 
     /**
-     * @param string $key Objective key.
-     * @param callable $lookup Restore id lookup.
+     * objective
+     *
+     * @param string $key
+     * @param callable $lookup
      * @return string|null
      */
     private static function objective(string $key, callable $lookup): ?string {
@@ -63,8 +65,10 @@ final class restore_key_mapper {
     }
 
     /**
-     * @param string $key Target key.
-     * @param callable $lookup Restore id lookup.
+     * target
+     *
+     * @param string $key
+     * @param callable $lookup
      * @return string|null
      */
     private static function target(string $key, callable $lookup): ?string {

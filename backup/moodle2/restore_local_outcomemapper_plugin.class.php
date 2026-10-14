@@ -34,6 +34,8 @@ class restore_local_outcomemapper_plugin extends restore_local_plugin {
     private array $pending = [];
 
     /**
+     * define_course_plugin_structure
+     *
      * @return restore_path_element[]
      */
     protected function define_course_plugin_structure() {
