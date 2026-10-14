@@ -28,6 +28,8 @@ use advanced_testcase;
 use moodle_exception;
 
 /**
+ * Class ai_mapper_test
+ *
  * @covers \local_outcomemapper\ai_mapper
  */
 final class ai_mapper_test extends advanced_testcase {
