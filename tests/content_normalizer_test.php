@@ -25,7 +25,6 @@
 namespace local_outcomemapper;
 
 use advanced_testcase;
-use core_text;
 
 /**
  * Tests for content normalization.
@@ -51,7 +50,7 @@ final class content_normalizer_test extends advanced_testcase {
      */
     public function test_plain_text_truncates_long_content(): void {
         $result = content_normalizer::plain_text(str_repeat('A', 1000), 100);
-        $this->assertLessThanOrEqual(101, core_text::strlen($result));
+        $this->assertLessThanOrEqual(101, strlen($result));
         $this->assertStringEndsWith('…', $result);
     }
 }

@@ -24,7 +24,6 @@
 
 namespace local_outcomemapper;
 
-use core_text;
 
 /**
  * Normalize course-owned text before semantic analysis.
@@ -53,8 +52,8 @@ class content_normalizer {
         $value = preg_replace('/[\x{00A0}\s]+/u', ' ', $value) ?? $value;
         $value = trim($value);
 
-        if ($limit !== null && $limit > 0 && core_text::strlen($value) > $limit) {
-            $value = rtrim(core_text::substr($value, 0, $limit - 1)) . '…';
+        if ($limit !== null && $limit > 0 && strlen($value) > $limit) {
+            $value = rtrim(substr($value, 0, $limit - 1)) . '…';
         }
 
         return $value;
