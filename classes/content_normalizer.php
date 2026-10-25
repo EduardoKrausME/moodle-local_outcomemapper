@@ -52,8 +52,8 @@ class content_normalizer {
         $value = preg_replace('/[\x{00A0}\s]+/u', ' ', $value) ?? $value;
         $value = trim($value);
 
-        if ($limit !== null && $limit > 0 && strlen($value) > $limit) {
-            $value = rtrim(substr($value, 0, $limit - 1)) . '…';
+        if ($limit !== null && $limit > 0 && mb_strlen($value, 'UTF-8') > $limit) {
+            $value = rtrim(mb_substr($value, 0, $limit - 1, 'UTF-8')) . '…';
         }
 
         return $value;
