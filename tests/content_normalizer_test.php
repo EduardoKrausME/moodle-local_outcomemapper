@@ -50,7 +50,17 @@ final class content_normalizer_test extends advanced_testcase {
      */
     public function test_plain_text_truncates_long_content(): void {
         $result = content_normalizer::plain_text(str_repeat('A', 1000), 100);
-        $this->assertLessThanOrEqual(101, strlen($result));
+        $this->assertLessThanOrEqual(100, mb_strlen($result, 'UTF-8'));
         $this->assertStringEndsWith('…', $result);
+    }
+
+    /**
+     * Multibyte characters count as one character and remain valid after truncation.
+     */
+    public function test_plain_text_truncates_multibyte_content(): void {
+        $result = content_normalizer::plain_text(str_repeat('á', 101), 100);
+
+        $this->assertSame(str_repeat('á', 99) . '…', $result);
+        $this->assertSame(100, mb_strlen($result, 'UTF-8'));
     }
 }
