@@ -160,15 +160,3 @@ resolved through Moodle's user mappings on restore.
 
 Deleting a course removes its analysis catalogs, AI suggestions and confirmed mappings before Moodle deletes the course
 context, so privacy data does not become orphaned.
-
-## Installable ZIP
-
-GitHub's automatic **Source code (zip)** download has a repository-specific root folder and is not suitable for uploading
-directly in Site administration > Plugins > Install plugins. Use the archive produced by the
-[Build installable Moodle ZIP workflow](https://github.com/EduardoKrausME/moodle-local_outcomemapper/actions/workflows/package.yml),
-which verifies that all entries start with `outcomemapper/` and publishes `local_outcomemapper.zip` as a CI artifact. This
-build **does not** increment the plugin version or publish a release.
-
-When updating the Moodle Marketplace listing, ensure the uploaded archive also uses the `outcomemapper/` root, and set its
-issue tracker field to
-https://github.com/EduardoKrausME/moodle-local_outcomemapper/issues. Those Marketplace settings are managed outside GitHub.
